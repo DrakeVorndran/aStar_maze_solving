@@ -1,14 +1,24 @@
 class Maze:
+    """
+        A class for repersenting mazes
+    """
     def __init__(self, height=10, width=10, walls=[], start=(0,0), end=None):
+        """
+            walls should be an array of tuples, with the first value being the x coord and the second value being the y coord of a cell (indexed at 0 with the top left corner being 0,0) that you cannot pass through
+            start and end are tuples as well, with the same indexing as the walls
+        """
         self.start = start
-        self.specials = {}
+        self.specials = {} # for displaying, key as a tuple of a cell coord, and the value as the character that you would like to be displayed
         self.height = height
         self.width = width
+        # if end is undefined, define it as the bottom left corner
         if(end):
             self.end = end
         else:
             self.end = (width - 1, height - 1)
+        # create the grid that represents the maze
         self.grid = [[0 for _ in range(height)] for _ in range(width)]
+        # add the walls, 0 being not a wall, 1 being a wall
         for row, col in walls:
             self.grid[col][row] = 1
 
